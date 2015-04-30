@@ -18,8 +18,8 @@ table.table.table-striped
         td= review.id
         td= review.review_id
         td= review.body
-        td= review.reviewee_id
-        td= review.author_id
+        td= review.reviewee.email
+        td= review.author.email
         td= review.type
         td=l review.created_at, format: :long
         td

@@ -4,3 +4,11 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+namespace :db do
+  task :recreate => [ :drop, :create, :migrate ] do
+    if ENV[ 'RAILS_ENV' ] !~ /test|cucumber/
+      Rake::Task[ 'db:seed' ].invoke
+    end
+  end
+end

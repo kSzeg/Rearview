@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :replies
-
-  resources :reviews
 
   devise_for :users
+
+  resources :replies
+  resources :reviews
+  resources :users, only: [:index, :show]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

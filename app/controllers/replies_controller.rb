@@ -31,6 +31,7 @@ class RepliesController < ApplicationController
         format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
+        flash[:error] = @reply.errors.messages.values.join ' '
         format.html { render :new }
         format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
@@ -62,13 +63,13 @@ class RepliesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reply
-      @reply = Reply.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reply
+    @reply = Reply.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reply_params
-      params.require(:reply).permit(:body)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def reply_params
+    params.require(:reply).permit(:review_id, :body)
+  end
 end
