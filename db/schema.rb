@@ -11,12 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411225839) do
+ActiveRecord::Schema.define(version: 20150430061058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "ratings", force: :cascade do |t|
+    #rating id needs to go because auto generated - thanks magic
+    t.string "rating_id"
+    t.string "review_id"
+    t.string "user_id"
+    t.string "rating"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    #reply id needs to go because ditto
+    t.string "reply_id"
+    t.string "review_id"
+    t.string "user_id"
+    t.string "body"
+  end
+
   create_table "reviews", force: :cascade do |t|
+    t.string "author_id"
+    t.string "user_id"
+    t.string "reply_id"
+    #remove this - you retard
+    t.string "rating_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    #add name, avatar, city, gender, facebook id, facebook oauth token, refresh token (google refresh token)
+    #when you get the oauth tokens, you get two tokens, refresh token necessary because don says so
+    t.string "user_id"
   end
 
 end
