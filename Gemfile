@@ -159,3 +159,6 @@ group :test do
   # adds a bunch of matchers for active model and other rspec test helpers - just a ton of them - a shit load - i use the docs for that
   gem 'shoulda-matchers',          '~> 2.8.0', require: false
 end
+
+gem 'omniauth'
+gem 'omniauth-facebook'
